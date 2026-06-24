@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 // In production the frontend and API ship in the same Vercel deployment, so the
 // API is reached via a relative path (same origin). Locally they run on different
@@ -112,7 +113,13 @@ export default function Home() {
         <div className="thread">
           {messages.map((m, i) => (
             <div key={i} className={`row ${m.role}`}>
-              <div className={`bubble ${m.role}`}>{m.content}</div>
+              <div className={`bubble ${m.role}`}>
+                {m.role === "coach" ? (
+                  <ReactMarkdown>{m.content}</ReactMarkdown>
+                ) : (
+                  m.content
+                )}
+              </div>
             </div>
           ))}
           {loading && (

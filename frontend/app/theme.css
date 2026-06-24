@@ -125,8 +125,8 @@ body {
   border-radius: 16px;
   font-size: 14px;
   line-height: 1.55;
-  white-space: pre-wrap;
   word-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 .bubble.coach {
   background: var(--surface);
@@ -136,6 +136,49 @@ body {
 .bubble.user {
   background: var(--bubble-user);
   color: var(--bubble-user-text);
+  white-space: pre-wrap; /* preserve line breaks in what the user typed */
+}
+
+/* Markdown rendered inside coach bubbles */
+.bubble.coach > :first-child {
+  margin-top: 0;
+}
+.bubble.coach > :last-child {
+  margin-bottom: 0;
+}
+.bubble.coach p {
+  margin: 0 0 8px;
+}
+.bubble.coach ul,
+.bubble.coach ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+.bubble.coach li {
+  margin: 3px 0;
+}
+.bubble.coach li::marker {
+  color: var(--muted);
+}
+.bubble.coach strong {
+  font-weight: 600;
+}
+.bubble.coach a {
+  color: var(--primary);
+}
+.bubble.coach code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 12px;
+}
+.bubble.coach h1,
+.bubble.coach h2,
+.bubble.coach h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px 0 4px;
 }
 .bubble.muted {
   color: var(--muted);
