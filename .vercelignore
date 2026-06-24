@@ -1,0 +1,5 @@
+# The customized local pnpm fork auto-generates frontend/pnpm-workspace.yaml for
+# its build-script gate. Standard pnpm on Vercel reads it as a workspace and fails
+# ("packages field missing or empty"). The Vercel CLI uploads local files (not the
+# git tree), so gitignore isn't enough — exclude it from uploads explicitly here.
+pnpm-workspace.yaml
