@@ -15,6 +15,14 @@ interface Message {
   content: string;
 }
 
+// Starter prompts shown before the first reply — one tap to send.
+const SUGGESTIONS = [
+  "I'm feeling overwhelmed",
+  "Help me build a better habit",
+  "I need a confidence boost",
+  "Help me unwind",
+];
+
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -32,8 +40,8 @@ export default function Home() {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
-  async function send() {
-    const text = input.trim();
+  async function send(textArg?: string) {
+    const text = (textArg ?? input).trim();
     if (!text || loading) return;
 
     setError(null);
@@ -120,6 +128,16 @@ export default function Home() {
           <div ref={endRef} />
         </div>
 
+        {messages.length === 1 && !loading && (
+          <div className="chips">
+            {SUGGESTIONS.map((s) => (
+              <button key={s} className="chip" onClick={() => send(s)}>
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+
         <div className="composer">
           <textarea
             className="input"
@@ -131,7 +149,7 @@ export default function Home() {
           />
           <button
             className="send"
-            onClick={send}
+            onClick={() => send()}
             disabled={loading || !input.trim()}
             aria-label="Send message"
           >

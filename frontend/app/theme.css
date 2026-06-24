@@ -1,28 +1,28 @@
-/* Centralised theme — all colours live here as CSS variables (see CLAUDE.md).
-   Edit these to re-theme the whole app. Light + dark via prefers-color-scheme. */
+/* Ocean theme — calming sea tones. All colours live here as CSS variables.
+   Light = sunlit shallows, dark = deep ocean. Edit here to re-theme everything. */
 :root {
   --bg: #ffffff;
-  --surface: #f4f6fb;
-  --text: #0b0f19;
-  --muted: #5a6478;
-  --primary: #6366f1;
-  --accent: #10b981;
-  --danger: #ef4444;
-  --border: #e2e6ef;
-  --bubble-user: #6366f1; /* white text stays high-contrast on this */
+  --surface: #eaf4f7; /* pale aqua */
+  --text: #0a2a33; /* deep teal-navy */
+  --muted: #5b7a84;
+  --primary: #0e7490; /* deep cyan */
+  --accent: #0d9488; /* teal */
+  --danger: #dc2626;
+  --border: #cbe2e8;
+  --bubble-user: #0e7490; /* white text keeps AA contrast on this */
   --bubble-user-text: #ffffff;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0b0f19;
-    --surface: #151b2b;
-    --text: #e6eaf2;
-    --muted: #9aa4b8;
-    --primary: #818cf8;
-    --accent: #34d399;
+    --bg: #07212b; /* deep ocean */
+    --surface: #103240; /* lighter navy surface */
+    --text: #e0f0f4;
+    --muted: #93b4be;
+    --primary: #38bdf8; /* bright sky-cyan accent */
+    --accent: #2dd4bf; /* seafoam */
     --danger: #f87171;
-    --border: #26304a;
-    --bubble-user: #4f46e5; /* darker indigo so white text keeps AA contrast */
+    --border: #1f4451;
+    --bubble-user: #0e7490; /* deep cyan reads well on the dark bg too */
     --bubble-user-text: #ffffff;
   }
 }
@@ -75,7 +75,7 @@ body {
   height: 40px;
   flex: none;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--bubble-user);
   color: #fff;
   display: flex;
   align-items: center;
@@ -176,7 +176,7 @@ body {
   flex: none;
   border: none;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--bubble-user);
   color: #fff;
   display: flex;
   align-items: center;
@@ -186,4 +186,25 @@ body {
 .send:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Suggested-prompt chips (shown before the first reply) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px 4px;
+}
+.chip {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+}
+.chip:hover {
+  border-color: var(--primary);
+  color: var(--text);
 }
