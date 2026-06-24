@@ -2,8 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Where the FastAPI backend lives. Override with NEXT_PUBLIC_API_BASE for deploys.
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8000";
+// In production the frontend and API ship in the same Vercel deployment, so the
+// API is reached via a relative path (same origin). Locally they run on different
+// ports, so fall back to :8000. Override anytime with NEXT_PUBLIC_API_BASE.
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE ??
+  (process.env.NODE_ENV === "development" ? "http://localhost:8000" : "");
 
 type Role = "user" | "coach";
 interface Message {
